@@ -5,11 +5,11 @@ const candidatesSchema = new Schema({
 
     description: String,
 
-    division: Number,
+    division_id: {type: Number, default: 0},
 
 
 });
 
-const candidates = models.divison || model('candidates',candidatesSchema)
+const candidates = models.candidates || model('candidates',candidatesSchema)
 
 export default candidates;

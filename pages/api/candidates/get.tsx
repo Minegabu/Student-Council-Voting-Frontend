@@ -1,19 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import connectionMongo from '../../../utils/connectdb'
 import Get from '../../../models/candidates'
-type Data = {
-  name: string
+import Users from '../../../models/users'; 
+import dbConnect from '../../../utils/connectdb';
+dbConnect()
+export default async function GetCandidate(
+    req: NextApiRequest,
+    res: NextApiResponse) {
+    const { method } = req;
+    switch(method ){
+      case 'GET':
+        try{
+          const candidates = await Get.find({})
+          res.status(200).json({ success: true, data: candidates})
+        } catch(err){
+            res.status(400).json({ success: false });
+        }
+        res.status(400).json({ success: false })
+        break;
+    } 
 }
 
-export default async function getCandidate(
-    req: NextApiRequest,
-    res: NextApiResponse<Data>
-  ) {
-    const { name, email} = req.body;
-    console.log('CONNECTING TO MONGO')
-    await connectionMongo()
-    console.log('CONNECTED TO MONGO')
-    console.log('FETCHING DOCUMENT')
-    const get = await Add.find()
-    res.json({get})   
-  }

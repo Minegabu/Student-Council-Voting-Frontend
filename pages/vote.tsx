@@ -5,9 +5,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 export default function Vote(){
     const { data: session } = useSession()
     const thing = async () => {
-    const res = await fetch('api/candidates/get'
-        
-    )
+    const res = await fetch('api/candidates/get')
     }
     thing()
     return<>
