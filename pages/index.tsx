@@ -1,26 +1,36 @@
-import { useSession, signIn, signOut } from "next-auth/react"
-import { useState } from "react"
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import React, { useEffect, useState } from "react"
+
+
+// fetch(ENV.API_URL + `/api/get-candidates/${id}`).then(response => )
 
 
 export default function Component() {
-  const { data: session } = useSession()
-  const thing = async () => { 
-    const res = await fetch('/api/users/add',{
+  const { data: session, status } = useSession()
+  console.log(session?.user?.email)
+  const thing = async () => {
+    const res = await fetch('/api/users/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-        body: JSON.stringify({
-          name: session?.user?.name,
-          email: session?.user?.email, 
-        }),
-      })
-    const data = await res.json()
-    console.log(data)
+      body: JSON.stringify({
+        name: session?.user?.name,
+        email: session?.user?.email
+      }),
+    })
   };
-  thing()
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await thing()
+    }
+    fetchData()
+  }, [])
+
   return <>
-    { 
+    {
       session ?
         <>
           Signed in as {session.user?.email} <br />
@@ -35,4 +45,9 @@ export default function Component() {
 
     }
   </>
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx)
+  return ({ props: { session } })
 }
