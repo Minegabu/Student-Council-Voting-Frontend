@@ -1,0 +1,40 @@
+h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 5vh;
+
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    size: 100vh;
+}
+
+#hi {
+    size: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Header {
+    size: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#SubmitVoteButton {
+    size: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+select {
+    width: 15vw;
+}

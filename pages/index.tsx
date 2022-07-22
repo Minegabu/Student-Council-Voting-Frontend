@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react"
 
 export default function Component() {
   const { data: session, status } = useSession()
-  console.log(session?.user?.email)
   const thing = async () => {
     const res = await fetch('/api/users/add', {
       method: 'POST',
