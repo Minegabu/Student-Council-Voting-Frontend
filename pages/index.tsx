@@ -2,25 +2,24 @@ import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import React, { useEffect, useState } from "react"
 
 
-// fetch(ENV.API_URL + `/api/get-candidates/${id}`).then(response => )
-
-
 export default function Component() {
   const { data: session, status } = useSession()
-  const thing = async () => {
-    const res = await fetch('/api/users/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: session?.user?.name,
-        email: session?.user?.email
-      }),
-    })
-  };
-
-
+  try {
+    const thing = async () => {
+      const res = await fetch('http://localhost:1234/api/users/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: session?.user?.name,
+          email: session?.user?.email
+        }),
+      })
+    };
+  } catch (err) {
+    console.log(err)
+  }
   useEffect(() => {
     const fetchData = async () => {
       await thing()
@@ -30,10 +29,20 @@ export default function Component() {
 
   return <>
     {
+
       session ?
         <>
-          Signed in as {session.user?.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
+          <nav>
+            <a href="/">Home</a>
+            <a href="/vote">Vote</a>
+            <a href="/about">About</a>
+          </nav>
+          <div id="text1">
+            <p>Signed in as {session?.user?.email}</p>
+          </div>
+          <div id="signedinas">
+            <button onClick={() => signOut()}>Sign out</button>
+          </div>
           <a href="/vote">Vote</a>
         </>
         : <>

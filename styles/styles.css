@@ -1,7 +1,14 @@
 h1 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
+
+h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 button {
@@ -37,4 +44,74 @@ body {
 
 select {
     width: 15vw;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    background: #292A30;
+    height: 10vh;
+    align-items: center;
+}
+
+a {
+    color: white !important;
+    text-decoration: none !important;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3vh;
+    transition-duration: 0.5s;
+    border: 0.5vh solid transparent;
+}
+
+a:hover {
+    border-color: white;
+
+}
+
+#signedinas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    font-size: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#text1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hi2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hi3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hi4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
