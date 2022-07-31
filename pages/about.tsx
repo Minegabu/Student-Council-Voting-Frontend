@@ -7,6 +7,7 @@ export default function About() {
                 <a href="/">Home</a>
                 <a href="/vote">Vote</a>
                 <a href="/about">About</a>
+                <a href="/candidates">Candidates</a>
             </nav>
             <h1>Student Council Voting</h1>
             <h2>A website that allows burnside high school students from certain divisions to vote for their student representatives.</h2>

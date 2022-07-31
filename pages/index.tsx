@@ -36,14 +36,17 @@ export default function Component() {
             <a href="/">Home</a>
             <a href="/vote">Vote</a>
             <a href="/about">About</a>
+            <a href="/candidates">Candidates</a>
           </nav>
           <div id="text1">
+            <div id="profileimg" position>
+              <img src={session.user?.image} referrerpolicy="no-referrer"></img>
+            </div>
             <p>Signed in as {session?.user?.email}</p>
           </div>
           <div id="signedinas">
             <button onClick={() => signOut()}>Sign out</button>
           </div>
-          <a href="/vote">Vote</a>
         </>
         : <>
           Not signed in <br />

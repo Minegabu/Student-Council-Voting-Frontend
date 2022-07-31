@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
-export default function submittedvote() {
+export default function submittedVote() {
     const { data: session } = useSession()
-    const thing = async () => {
-        const res = await fetch()
+    const buttonredirect = () => {
+        location.href = "/"
     }
-    useEffect(() => {
-        const fetchData = async () => {
-            await thing()
-        }
-        fetchData()
-    }, [])
     return <>
         {
-
             session ?
                 <>
                     <div id="Header">
@@ -22,7 +15,7 @@ export default function submittedvote() {
                     <div id="hi">
                     </div>
                     <div id="SubmitVoteButton">
-                        <button ref="/">Go back home!</button>
+                        <button id="goback" onClick={buttonredirect}>Go back home</button>
                     </div>
                 </>
                 :
