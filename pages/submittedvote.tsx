@@ -1,35 +1,44 @@
-import React, { useState, useEffect } from "react"
-import { useSession, signIn, signOut, getSession } from "next-auth/react"
-export default function submittedVote() {
-    const { data: session } = useSession()
-    const buttonredirect = () => {
-        location.href = "/"
-    }
-    return <>
-        {
-            session ?
-                <>
-                    <div id="Header">
-                        <h1>Thank you for submitting your vote</h1>
-                    </div>
-                    <div id="hi">
-                    </div>
-                    <div id="SubmitVoteButton">
-                        <button id="goback" onClick={buttonredirect}>Go back home</button>
-                    </div>
-                </>
-                :
-                <>
-                    <a> You are not signed in</a>
-                    <a> Please go to the homepage and login</a>
-                </>
+import React from 'react';
+import { useSession, getSession } from 'next-auth/react';
+import { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 
-        }
+const SubmittedVote = () => {
+    const { data: session } = useSession();
+    return (
+        <>
+            {
+                session
+                    ? (
+                        <>
+                            <div id="Header">
+                                <h1>Thank you for submitting your vote</h1>
+                            </div>
+                            <div id="hi" />
+                            <div id="SubmitVoteButton">
+                                <Link href="/"><button type="button" id="goback">Go back home</button></Link>
+                            </div>
+                            <div id="profileimg">
+                                <img src={session.user?.image} referrerPolicy="no-referrer" alt="userprofile" />
+                            </div>
 
-    </>
+                        </>
+                    )
+                    : (
+                        <>
+                            <p>You are not signed in</p>
+                            <p>Please go to the homepage and login</p>
+                        </>
+                    )
+            }
+
+        </>
+    );
+};
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    const session = await getSession(ctx);
+    return ({ props: { session } });
 }
 
-export async function getServerSideProps(ctx) {
-    const session = await getSession(ctx)
-    return ({ props: { session } })
-}
+export default SubmittedVote;

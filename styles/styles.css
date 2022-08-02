@@ -186,3 +186,32 @@ p {
     align-items: center;
     justify-content: center;
 }
+
+#login3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loginbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1vh;
+}
+
+#hi2 {
+    margin: 1vh;
+}
