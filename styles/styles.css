@@ -191,6 +191,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 1vh;
 }
 
 #loginbutton {
@@ -203,6 +204,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 1vh;
 }
 
 #login1 {
@@ -214,4 +216,21 @@ p {
 
 #hi2 {
     margin: 1vh;
+}
+
+#button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vh;
+}
+
+input::placeholder {
+    color: #cacccf;
 }
