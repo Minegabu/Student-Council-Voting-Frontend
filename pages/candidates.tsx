@@ -39,39 +39,42 @@ const Candidate = () => {
                 session
                     ? (
                         <>
-                            <nav>
-                                <a href="/">Home</a>
-                                <a href="/vote">Vote</a>
-                                <a href="/about">About</a>
-                                <a href="/candidates">Candidates</a>
-                            </nav>
-                            <div id="Header">
-                                <div id="profileimg">
-                                    <img src={session?.user?.image} referrerPolicy="no-referrer" alt="userprofile" />
+                            <div className="card-overlay">
+                                <nav>
+                                    <a href="/">Home</a>
+                                    <a href="/vote">Vote</a>
+                                    <a href="/about">About</a>
+                                    <a href="/candidates" id="selectednav">Candidates</a>
+                                    <a href="/"><img src={session.user.image} referrerPolicy="no-referrer" className="img-fluid" alt="userprofile" /></a>
+                                </nav>
+                                <div id="Header">
+                                    <h1> List of available nominees</h1>
                                 </div>
-                                <h1> List of available nominees</h1>
-                            </div>
-                            <div>
-                                {names.map((name, index) => (
-                                    <div id={name}>
-                                        {' '}
-                                        <h1>{name}</h1>
-                                        {' '}
-                                        <h2>{descriptions[index]}</h2>
-                                    </div>
-                                ))}
+                                <div>
+                                    {names.map((name, index) => (
+                                        <div id={name}>
+                                            {' '}
+                                            <h2>{name}</h2>
+                                            {' '}
+                                            <b>{descriptions[index]}</b>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </>
                     )
                     : (
                         <>
-                            {' '}
-                            You are not signed in
-                            <br />
-                            {' '}
-                            Please go to the homepage and login
-                            <br />
-                            <a href="/"> Go Back </a>
+                            <div className="card-overlay">
+
+                                {' '}
+                                <p>You are not signed in</p>
+                                <br />
+                                {' '}
+                                <p>Please go to the homepage and login</p>
+                                <br />
+                                <a href="/"> Go Back </a>
+                            </div>
                         </>
                     )
             }

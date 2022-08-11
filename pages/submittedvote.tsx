@@ -11,23 +11,27 @@ const SubmittedVote = () => {
                 session
                     ? (
                         <>
-                            <div id="Header">
-                                <h1>Thank you for submitting your vote</h1>
-                            </div>
-                            <div id="hi" />
-                            <div id="SubmitVoteButton">
-                                <Link href="/"><button type="button" id="goback">Go back home</button></Link>
-                            </div>
-                            <div id="profileimg">
-                                <img src={session.user?.image} referrerPolicy="no-referrer" alt="userprofile" />
-                            </div>
+                            <div className="card-overlay">
 
+                                <div id="Header">
+                                    <h1>Thank you for submitting your vote</h1>
+                                </div>
+                                <div id="hi" />
+                                <div id="SubmitVoteButton">
+                                    <Link href="/"><button type="button" id="goback">Go back home</button></Link>
+                                </div>
+                                <div id="profileimg">
+                                    <img src={session.user?.image} referrerPolicy="no-referrer" alt="userprofile" />
+                                </div>
+                            </div>
                         </>
                     )
                     : (
                         <>
-                            <p>You are not signed in</p>
-                            <p>Please go to the homepage and login</p>
+                            <div className="card-overlay">
+                                <p>You are not signed in</p>
+                                <p>Please go to the homepage and login</p>
+                            </div>
                         </>
                     )
             }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 
 const Vote = () => {
     const { data: session } = useSession();
@@ -37,74 +38,79 @@ const Vote = () => {
     return (
         <>
             {
-
                 session
                     ? (
                         <>
-                            <div id="navbar">
-                                <nav>
-                                    <a href="/">Home</a>
-                                    <a href="/vote">Vote</a>
-                                    <a href="/about">About</a>
-                                    <a href="/candidates">Candidates</a>
-                                </nav>
-                            </div>
-                            <div id="Header">
-                                <div id="profileimg">
-                                    <img src={session.user?.image} referrerPolicy="no-referrer" alt="userprofile" />
+                            <div id="background-image" />
+                            <div className="card-overlay">
+                                <div id="navbar">
+                                    <nav>
+                                        <a href="/">Home</a>
+                                        <a id="selectednav" href="/vote">Vote</a>
+                                        <a href="/about">About</a>
+                                        <a href="/candidates">Candidates</a>
+                                        <a href="/"><img src={session.user.image} referrerPolicy="no-referrer" className="img-fluid" alt="userprofile" /></a>
+                                    </nav>
                                 </div>
-                                <h1> Please vote for a student council representative</h1>
-                            </div>
-                            <div id="hi">
-                                <form id="formforvote">
-                                    <div id="hi4">
-                                        <select
-                                            value={selection !== null ? names[selection] : 'Select Candidate'}
-                                            onChange={(e) => {
-                                                const index = names.indexOf(e.target.value);
-                                                if (index >= 0) {
-                                                    setSelection(index);
-                                                } else {
-                                                    setSelection(null);
-                                                }
-                                            }}
-                                            id="Selectvotedropdown"
-                                        >
-                                            <option value="defaultoption">--Choose an option--</option>
-                                            {names.map((name) => (
-                                                <option id={name} value={name}>
-                                                    {name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    {selection !== null && (
-                                        <div id="hi2">
-                                            <button type="submit" onClick={onSenddata}>
-                                                Vote for
-                                                {' '}
-                                                {names[selection]}
-                                            </button>
+                                <div id="Header">
+                                    <h1> Please vote for a student council representative</h1>
+                                </div>
+                                <div id="hi">
+                                    <form id="formforvote">
+                                        <div id="hi4">
+                                            <select
+                                                value={selection !== null ? names[selection] : 'Select Candidate'}
+                                                onChange={(e) => {
+                                                    const index = names.indexOf(e.target.value);
+                                                    if (index >= 0) {
+                                                        setSelection(index);
+                                                    } else {
+                                                        setSelection(null);
+                                                    }
+                                                }}
+                                                id="Selectvotedropdown"
+                                            >
+                                                <option value="defaultoption"> Choose an option </option>
+                                                {names.map((name) => (
+                                                    <option id={name} value={name}>
+                                                        {name}
+                                                    </option>
+                                                ))}
+                                            </select>
                                         </div>
-                                    )}
+                                        {selection !== null && (
+                                            <div id="hi2">
+                                                <Link href="/submittedvote">
+                                                    <button type="submit" onClick={onSenddata}>
+                                                        Vote for
+                                                        {' '}
+                                                        {names[selection]}
+                                                    </button>
 
-                                </form>
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </form>
+                                </div>
                             </div>
                         </>
                     )
                     : (
                         <>
-                            <p>
-                                {' '}
-                                You are not signed in
-                                <br />
-                            </p>
-                            <p>
-                                {' '}
-                                Please go to the homepage and login
-                                <br />
-                            </p>
-                            <a href="/"> Go Back </a>
+                            <div className="card-overlay">
+
+                                <p>
+                                    {' '}
+                                    You are not signed in
+                                    <br />
+                                </p>
+                                <p>
+                                    {' '}
+                                    Please go to the homepage and login
+                                    <br />
+                                </p>
+                                <a href="/"> Go Back </a>
+                            </div>
                         </>
                     )
 

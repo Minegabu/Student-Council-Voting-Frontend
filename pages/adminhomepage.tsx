@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import Link from 'next/link';
 
 const AdminHomepage = () => {
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState<JwtPayload | null>(null);
     const onLogout = () => {
         localStorage.clear();
     };
@@ -11,8 +11,9 @@ const AdminHomepage = () => {
         const token = localStorage.getItem('token');
         if (token) {
             const user = jwt.decode(token);
-            setUser(user);
-            if (!user) {
+            if (user !== null && typeof user !== 'string') {
+                setUser(user);
+            } else {
                 localStorage.removeItem('token');
             }
         }
@@ -21,29 +22,34 @@ const AdminHomepage = () => {
         user
             ? (
                 <>
-                    <div id="nav">
-                        <nav>
-                            <a href="/adminhomepage">Home</a>
-                            <a href="/createcandidate">Create Candidates</a>
-                            <a href="/currentvotes"> See Current Votes</a>
-                        </nav>
-                    </div>
-                    <div id="signedinas">
-                        <p>
-                            Welcome
-                            {' '}
-                            {user.name}
-                        </p>
-                    </div>
-                    <div id="button">
-                        <Link href="/adminlogin"><button type="button" onClick={onLogout}>Sign Out</button></Link>
+                    <div className="card-overlay">
+                        <div id="nav">
+                            <nav>
+                                <a href="/adminhomepage">Home</a>
+                                <a href="/createcandidate">Create Candidates</a>
+                                <a href="/currentvotes"> See Current Votes</a>
+                            </nav>
+                        </div>
+                        <div id="signedinas">
+                            <p>
+                                Welcome
+                                {' '}
+                                {user.name}
+                            </p>
+                        </div>
+                        <div id="button">
+                            <Link href="/adminlogin"><button type="button" onClick={onLogout}>Sign Out</button></Link>
+                        </div>
                     </div>
                 </>
             )
             : (
                 <>
-                    <p> You are not signed in</p>
-                    <a href="/">Go back Home</a>
+                    <div className="card-overlay">
+
+                        <p> You are not signed in</p>
+                        <a href="/">Go back Home</a>
+                    </div>
                 </>
             )
 

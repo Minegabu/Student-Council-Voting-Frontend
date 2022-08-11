@@ -30,38 +30,45 @@ const Component = () => {
                 session
                     ? (
                         <>
-                            <nav>
-                                <a href="/">Home</a>
-                                <a href="/vote">Vote</a>
-                                <a href="/about">About</a>
-                                <a href="/candidates">Candidates</a>
-                            </nav>
-                            <div id="text1">
-                                <div id="profileimg">
-                                    <img src={session.user.image} referrerPolicy="no-referrer" alt="userprofile" />
+                            <div id="bg-image" />
+                            <div className="card-overlay">
+                                <nav>
+                                    <a href="/" id="selectednav">Home</a>
+                                    <a href="/vote">Vote</a>
+                                    <a href="/about">About</a>
+                                    <a href="/candidates">Candidates</a>
+                                    <a href="/"><img src={session.user.image} referrerPolicy="no-referrer" className="img-fluid" alt="userprofile" /></a>
+                                </nav>
+                                <div id="container">
+                                    <div id="text1">
+                                        <h1>
+                                            You are Signed in as
+                                            <br />
+                                        </h1>
+                                        <p>{session.user.email}</p>
+                                    </div>
+                                    <div id="signedinas">
+                                        <button type="submit" onClick={() => signOut()}>Sign out</button>
+                                    </div>
                                 </div>
-                                <h1>
-                                    Signed in as
-                                    {' '}
-                                    {session.user.email}
-                                </h1>
-                            </div>
-                            <div id="signedinas">
-                                <button type="submit" onClick={() => signOut()}>Sign out</button>
                             </div>
                         </>
                     )
                     : (
                         <>
-                            <nav>
-                                <a href="/">Login as a Student</a>
-                                <a href="/adminlogin">Login as a Admin</a>
-                            </nav>
-                            <div id="login">
-                                <p> Not signed in </p>
-                            </div>
-                            <div id="loginbutton">
-                                <button type="submit" onClick={() => signIn()}>Sign in</button>
+                            <div id="bg-image" />
+
+                            <div className="card-overlay">
+                                <nav>
+                                    <a id="selectednav" href="/">Login as a Student</a>
+                                    <a href="/adminlogin">Login as a Admin</a>
+                                </nav>
+                                <div id="login">
+                                    <p> Not signed in </p>
+                                </div>
+                                <div id="loginbutton">
+                                    <button type="submit" onClick={() => signIn()}>Sign in as Student</button>
+                                </div>
                             </div>
                         </>
                     )
