@@ -23,8 +23,6 @@ const AdminVotes = () => {
             if (!user) {
                 localStorage.removeItem('token');
             }
-        } else {
-            console.log('hi');
         }
     }, []);
     return (

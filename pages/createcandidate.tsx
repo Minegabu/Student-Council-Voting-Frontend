@@ -27,8 +27,6 @@ const Createcandidate = () => {
             if (!user) {
                 localStorage.removeItem('token');
             }
-        } else {
-            console.log('hi');
         }
     }, []);
     return (

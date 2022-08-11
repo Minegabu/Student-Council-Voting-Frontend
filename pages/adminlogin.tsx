@@ -15,7 +15,6 @@ const Adminlogin = () => {
             }),
         });
         const data = await res.json();
-        console.log(data.users);
         if (data.users) {
             localStorage.setItem('token', data.users);
             location.href = '/adminhomepage';

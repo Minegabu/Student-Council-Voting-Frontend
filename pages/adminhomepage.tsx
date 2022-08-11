@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import jwt from 'jsonwebtoken';
+import Link from 'next/link';
 
 const AdminHomepage = () => {
     const [user, setUser] = useState('');
     const onLogout = () => {
-        location.href = '/adminlogin';
-        localStorage.clear('token');
+        localStorage.clear();
     };
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -15,8 +15,6 @@ const AdminHomepage = () => {
             if (!user) {
                 localStorage.removeItem('token');
             }
-        } else {
-            console.log('hi');
         }
     }, []);
     return (
@@ -38,7 +36,7 @@ const AdminHomepage = () => {
                         </p>
                     </div>
                     <div id="button">
-                        <button type="button" onClick={onLogout}>Sign Out</button>
+                        <Link href="/adminlogin"><button type="button" onClick={onLogout}>Sign Out</button></Link>
                     </div>
                 </>
             )
