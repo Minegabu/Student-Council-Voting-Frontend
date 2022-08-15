@@ -18,9 +18,9 @@ const About = () => {
                                     <a href="/candidates">Candidates</a>
                                     <a href="/"><img src={session.user.image} referrerPolicy="no-referrer" className="img-fluid" alt="userprofile" /></a>
                                 </nav>
-                                <div>
+                                <div id="aboutdiv">
                                     <h1>Student Council Voting</h1>
-                                    <h2>A website that allows burnside high school students from certain divisions to vote for their student representatives.</h2>
+                                    <b>A website that allows burnside high school students from certain divisions to vote for their student representatives.</b>
                                 </div>
                             </div>
                         </div>

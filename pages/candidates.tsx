@@ -10,8 +10,8 @@ const Candidate = () => {
         if (session) {
             const { data }: { data: any[] } = await fetch(`http://localhost:1234/api/get-candidate/${encodeURIComponent(session?.user?.email)}`).then((response) => response.json());
             const candidatenames = data[1];
-            setNames(candidatenames.map((candidatename) => candidatename.name));
-            setDescriptions(candidatenames.map((candidatedescriptions) => candidatedescriptions.description));
+            setNames(candidatenames.map((candidatename: { name: string }) => candidatename.name));
+            setDescriptions(candidatenames.map((candidatedescriptions: { description: string }) => candidatedescriptions.description));
         }
     }, [session]);
     useEffect(() => {

@@ -12,7 +12,7 @@ const Vote = () => {
         if (session) {
             const { data }: { data: any[] } = await fetch(`http://localhost:1234/api/get-candidate/${encodeURIComponent(session?.user?.email)}`).then((response) => response.json());
             const candidatenames = data[1];
-            setNames(candidatenames.map((candidate) => candidate.name));
+            setNames(candidatenames.map((candidate: { name: string }) => candidate.name));
             setExistVote(data[0]);
         }
     }, [session]);
@@ -98,9 +98,7 @@ const Vote = () => {
                                                 <div id="hi2">
                                                     <Link href="/submittedvote">
                                                         <button type="submit" onClick={onSenddata}>
-                                                            Update Vote to
-                                                            {' '}
-                                                            {names[selection]}
+                                                            Update Vote
                                                         </button>
                                                     </Link>
                                                 </div>
