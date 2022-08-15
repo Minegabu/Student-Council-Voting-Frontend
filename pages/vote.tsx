@@ -7,10 +7,13 @@ const Vote = () => {
     const { data: session } = useSession();
     const [selection, setSelection] = useState<number | null>(null);
     const [names, setNames] = useState<string[]>([]);
+    const [existvote, setExistVote] = useState();
     const fetchData = useCallback(async () => {
         if (session) {
             const { data }: { data: any[] } = await fetch(`http://localhost:1234/api/get-candidate/${encodeURIComponent(session?.user?.email)}`).then((response) => response.json());
-            setNames(data.map((candidate) => candidate.name));
+            const candidatenames = data[1];
+            setNames(candidatenames.map((candidate) => candidate.name));
+            setExistVote(data[0]);
         }
     }, [session]);
 
@@ -78,7 +81,7 @@ const Vote = () => {
                                                 ))}
                                             </select>
                                         </div>
-                                        {selection !== null && (
+                                        {selection !== null && existvote === null && (
                                             <div id="hi2">
                                                 <Link href="/submittedvote">
                                                     <button type="submit" onClick={onSenddata}>
@@ -90,8 +93,32 @@ const Vote = () => {
                                                 </Link>
                                             </div>
                                         )}
+                                        {selection !== null && existvote !== null && (
+                                            <>
+                                                <div id="hi2">
+                                                    <Link href="/submittedvote">
+                                                        <button type="submit" onClick={onSenddata}>
+                                                            Update Vote to
+                                                            {' '}
+                                                            {names[selection]}
+                                                        </button>
+                                                    </Link>
+                                                </div>
+                                            </>
+                                        )}
                                     </form>
                                 </div>
+                                {existvote !== null && (
+                                    <div>
+                                        <b>
+                                            {' '}
+                                            You have voted for
+                                            {' '}
+                                            {existvote}
+                                            {' '}
+                                        </b>
+                                    </div>
+                                )}
                             </div>
                         </>
                     )

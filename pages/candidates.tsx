@@ -2,37 +2,21 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
 
-const candidateslistname: string[] = [];
-let uniquecandidatelistname = null;
-let uniquecandidatesetname = null;
-const listdescription: string[] = [];
-let setdescription = null;
-let uniquelistdescription = null;
-
 const Candidate = () => {
     const { data: session } = useSession();
     const [names, setNames] = useState<string[]>([]);
     const [descriptions, setDescriptions] = useState<string[]>([]);
-    const fetchapi = useCallback(async () => {
+    const fetchData = useCallback(async () => {
         if (session) {
-            await fetch(`http://localhost:1234/api/get-candidate/${encodeURIComponent(session.user.email)}`).then((response) => response.json()).then((data) => {
-                const count = Object.keys(data.data).length;
-                for (let i = 0; i < count; i++) {
-                    candidateslistname.push(data.data[i].name);
-                    uniquecandidatesetname = new Set(candidateslistname);
-                    uniquecandidatelistname = Array.from(uniquecandidatesetname);
-                    setNames(uniquecandidatelistname);
-                    listdescription.push(data.data[i].description);
-                    setdescription = new Set(listdescription);
-                    uniquelistdescription = Array.from(setdescription);
-                    setDescriptions(uniquelistdescription);
-                }
-            });
+            const { data }: { data: any[] } = await fetch(`http://localhost:1234/api/get-candidate/${encodeURIComponent(session?.user?.email)}`).then((response) => response.json());
+            const candidatenames = data[1];
+            setNames(candidatenames.map((candidatename) => candidatename.name));
+            setDescriptions(candidatenames.map((candidatedescriptions) => candidatedescriptions.description));
         }
     }, [session]);
     useEffect(() => {
-        fetchapi();
-    }, [fetchapi]);
+        fetchData();
+    }, [fetchData]);
     return (
         <>
             {
