@@ -11,7 +11,7 @@ const Adminlogin = () => {
     const [exist, setExist] = useState<boolean>();
     const router = useRouter();
     const onAdminlogin = async () => {
-        const res = await fetch('http://localhost:1234/api/admin/verify', {
+        const res = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/verify', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

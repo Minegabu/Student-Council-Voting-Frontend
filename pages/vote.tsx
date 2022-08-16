@@ -10,7 +10,8 @@ const Vote = () => {
     const [existvote, setExistVote] = useState();
     const fetchData = useCallback(async () => {
         if (session) {
-            const { data }: { data: any[] } = await fetch(`http://localhost:1234/api/get-candidate/${encodeURIComponent(session?.user?.email)}`).then((response) => response.json());
+            const { data }: { data: any[] } = await fetch(`https://backendstudentcouncil.herokuapp.com/api/get-candidate/${encodeURIComponent(session?.user?.email)}`)
+                .then((response) => response.json());
             const candidatenames = data[1];
             setNames(candidatenames.map((candidate: { name: string }) => candidate.name));
             setExistVote(data[0]);
@@ -20,7 +21,7 @@ const Vote = () => {
     const onSenddata = async () => {
         if (session) {
             if (selection != null) {
-                await fetch('http://localhost:1234/api/vote/update', {
+                await fetch('https://backendstudentcouncil.herokuapp.com/api/vote/update', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

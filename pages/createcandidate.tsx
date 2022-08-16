@@ -8,7 +8,7 @@ const Createcandidate = () => {
     const [divisionid, setDivisionid] = useState<string | null>(null);
     const [description, setDescription] = useState<string | null>(null);
     const onCandidateCreate = async () => {
-        await fetch('http://localhost:1234/api/admin/createcandidate', {
+        await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/createcandidate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

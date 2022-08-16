@@ -9,6 +9,7 @@ export default NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            checks: 'pkce',
         }),
     ],
     secret: process.env.JWT_SECRET,

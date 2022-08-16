@@ -8,7 +8,8 @@ const Candidate = () => {
     const [descriptions, setDescriptions] = useState<string[]>([]);
     const fetchData = useCallback(async () => {
         if (session) {
-            const { data }: { data: any[] } = await fetch(`http://localhost:1234/api/get-candidate/${encodeURIComponent(session?.user?.email)}`).then((response) => response.json());
+            const { data }: { data: any[] } = await fetch(`https://backendstudentcouncil.herokuapp.com/api/get-candidate/${encodeURIComponent(session?.user?.email)}`)
+                .then((response) => response.json());
             const candidatenames = data[1];
             setNames(candidatenames.map((candidatename: { name: string }) => candidatename.name));
             setDescriptions(candidatenames.map((candidatedescriptions: { description: string }) => candidatedescriptions.description));

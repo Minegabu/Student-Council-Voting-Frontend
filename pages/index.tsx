@@ -6,7 +6,7 @@ const Component = () => {
     const { data: session } = useSession();
     const addUser = useCallback(async () => {
         if (session) {
-            await fetch('http://localhost:1234/api/users/add', {
+            await fetch('https://backendstudentcouncil.herokuapp.com/api/users/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
