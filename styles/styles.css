@@ -91,7 +91,7 @@ button:hover {
 body {
     margin: 0%;
     font-family: Poppins;
-    background-image: url("background-image.jpeg");
+    background-image: url("../public/background-image.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     min-height: auto;
