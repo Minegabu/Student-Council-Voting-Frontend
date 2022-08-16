@@ -39,8 +39,7 @@ const Createcandidate = () => {
                         <div id="nav">
                             <nav>
                                 <a href="/adminhomepage">Home</a>
-                                <a href="/createcandidate">Create Candidates</a>
-                                <a href="/currentvotes"> See Current Votes</a>
+                                <a href="/createcandidate" id="selectednav">Create Candidates</a>
                             </nav>
                         </div>
                         <div id="login3">

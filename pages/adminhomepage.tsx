@@ -25,9 +25,8 @@ const AdminHomepage = () => {
                     <div className="card-overlay">
                         <div id="nav">
                             <nav>
-                                <a href="/adminhomepage">Home</a>
+                                <a href="/adminhomepage" id="selectednav">Home</a>
                                 <a href="/createcandidate">Create Candidates</a>
-                                <a href="/currentvotes"> See Current Votes</a>
                             </nav>
                         </div>
                         <div id="signedinas">

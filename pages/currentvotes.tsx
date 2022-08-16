@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+/**import React, { FC, useEffect, useState } from 'react';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { GetServerSidePropsResult } from 'next';
 
@@ -31,7 +31,6 @@ const AdminVotes: FC<AdminVoteProps> = ({ names }) => {
                             <nav>
                                 <a href="/adminhomepage">Home</a>
                                 <a href="/createcandidate">Create Candidates</a>
-                                <a href="/currentvotes"> See Current Votes</a>
                             </nav>
                         </div>
                         <div>
