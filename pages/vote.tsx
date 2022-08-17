@@ -45,7 +45,6 @@ const Vote = () => {
                 session
                     ? (
                         <>
-                            <div id="background-image" />
                             <div className="card-overlay">
                                 <div id="navbar">
                                     <nav>
