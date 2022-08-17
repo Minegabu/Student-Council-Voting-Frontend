@@ -91,7 +91,7 @@ button:hover {
 body {
     margin: 0%;
     font-family: Poppins;
-    background-image: url("../public/background-image.jpeg");
+    background-image: url('https://burnsidehscouncil.vercel.app/_next/static/media/background-image.31d1aa11.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     min-height: auto;
