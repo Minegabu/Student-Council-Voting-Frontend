@@ -7,8 +7,9 @@ const CurrentVotes = () => {
     const getcurrentvotes = async () => {
         const { data }: { data: any[] } = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/get-vote')
             .then((response) => response.json());
-        const votes = data[1];
-        setVotes(votes.map((vote: { candidate_vote: string }) => vote.candidate_vote));
+        const votes2 = data[1];
+        console.log(votes2);
+        setVotes(votes2.map((vote: { candidate_vote: string }) => vote.candidate_vote));
     };
     useEffect(() => {
         const token = localStorage.getItem('token');
