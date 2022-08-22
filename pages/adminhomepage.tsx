@@ -27,6 +27,7 @@ const AdminHomepage = () => {
                             <nav>
                                 <a href="/adminhomepage" id="selectednav">Home</a>
                                 <a href="/createcandidate">Create Candidates</a>
+                                <a href="/currentvotes">Current Votes</a>
                             </nav>
                         </div>
                         <div id="signedinas">

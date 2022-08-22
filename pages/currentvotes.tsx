@@ -5,7 +5,7 @@ const CurrentVotes = () => {
     const [votes, setVotes] = useState<string[]>([]);
     const [user, setUser] = useState<JwtPayload | null>(null);
     const getcurrentvotes = async () => {
-        const { data }: { data: any[] } = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/get-vote')
+        const data = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/get-vote')
             .then((response) => response.json());
         const votes2 = data;
         console.log(votes2);
@@ -27,12 +27,18 @@ const CurrentVotes = () => {
         user
             ? (
                 <>
-                    <h1> Hi </h1>
-                    {votes.map((name) => (
-                        <h1>
-                            {name}
-                        </h1>
-                    ))}
+                    <div className="card-overlay">
+                        <nav>
+                            <a href="/adminhomepage">Home</a>
+                            <a href="/createcandidate">Create Candidates</a>
+                            <a href="/currentvotes" id="selectednav">Current Votes</a>
+                        </nav>
+                        {votes.map((name) => (
+                            <h1>
+                                {name}
+                            </h1>
+                        ))}
+                    </div>
                 </>
             )
             : (
