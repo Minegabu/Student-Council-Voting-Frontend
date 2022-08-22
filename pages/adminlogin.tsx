@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
+import crypto from 'crypto';
 
 const Adminlogin = () => {
     const [username, setUsername] = useState('');
@@ -10,15 +11,17 @@ const Adminlogin = () => {
     const { data: session } = useSession();
     const [exist, setExist] = useState<boolean>();
     const router = useRouter();
+    const encryptedpassword = crypto.createHash('sha256').update(password).digest('base64');
     const onAdminlogin = async () => {
         const res = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/verify', {
             method: 'POST',
             headers: {
+
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 username,
-                password,
+                encryptedpassword,
             }),
         });
         const data = await res.json();
