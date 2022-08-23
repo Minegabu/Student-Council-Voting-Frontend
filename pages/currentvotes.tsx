@@ -7,7 +7,7 @@ const CurrentVotes = () => {
     const getcurrentvotes = async () => {
         const data = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/get-vote')
             .then((response) => response.json());
-        const votes2 = data[0];
+        const votes2 = data[1];
         console.log(votes2);
         setVotes(votes2.map((vote: { candidate_vote: string }) => vote.candidate_vote));
     };
