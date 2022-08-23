@@ -7,8 +7,7 @@ const CurrentVotes = () => {
     const getcurrentvotes = async () => {
         const data = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/get-vote')
             .then((response) => response.json());
-        const votes2 = data[0][0];
-        console.log(votes2);
+        const votes2 = data;
         setVotes(votes2.map((vote: { candidate_vote: string }) => vote.candidate_vote));
     };
     useEffect(() => {
@@ -33,9 +32,9 @@ const CurrentVotes = () => {
                             <a href="/createcandidate">Create Candidates</a>
                             <a href="/currentvotes" id="selectednav">Current Votes</a>
                         </nav>
-                        {votes.map((name) => (
+                        {votes.map((vote) => (
                             <h1>
-                                {name}
+                                {vote}
                             </h1>
                         ))}
                     </div>
