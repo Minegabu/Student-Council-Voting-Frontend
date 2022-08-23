@@ -1,8 +1,10 @@
+// import things
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
 
 const Candidate = () => {
+    // setting states so I can use it in html
     const { data: session } = useSession();
     const [names, setNames] = useState<string[]>([]);
     const [descriptions, setDescriptions] = useState<string[]>([]);
@@ -15,6 +17,7 @@ const Candidate = () => {
             setDescriptions(candidatenames.map((candidatedescriptions: { description: string }) => candidatedescriptions.description));
         }
     }, [session]);
+    // makes it run on refresh
     useEffect(() => {
         fetchData();
     }, [fetchData]);

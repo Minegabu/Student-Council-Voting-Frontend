@@ -1,9 +1,12 @@
+// Import things
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 import React, { useEffect, useCallback } from 'react';
 import { GetServerSidePropsContext } from 'next';
 
 const Component = () => {
+    // session data to check if logged in
     const { data: session } = useSession();
+    // function to send data to the api to make them have a division id
     const addUser = useCallback(async () => {
         if (session) {
             await fetch('https://backendstudentcouncil.herokuapp.com/api/users/add', {
@@ -18,15 +21,15 @@ const Component = () => {
             });
         }
     }, [session]);
-
+    // makes function runs on refresh
     useEffect(() => {
         addUser();
     }, [addUser]);
-
+    //  return the html of the page
     return (
         <>
             {
-
+                // checks if the user is logged in
                 session
                     ? (
                         <>
@@ -54,6 +57,7 @@ const Component = () => {
                             </div>
                         </>
                     )
+                    // checks if user is not logged in
                     : (
                         <>
                             <div id="bg-image" />
@@ -77,7 +81,7 @@ const Component = () => {
         </>
     );
 };
-
+// get session from server side props
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const session = await getSession(ctx);
     return ({ props: { session } });

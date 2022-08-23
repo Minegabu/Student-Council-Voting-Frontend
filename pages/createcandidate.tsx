@@ -1,12 +1,15 @@
+// import things
 import React, { useEffect, useState } from 'react';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import Link from 'next/link';
 
 const Createcandidate = () => {
+    // set state variables so I can use them in html
     const [user, setUser] = useState<string | null | JwtPayload>(null);
     const [username, setUsername] = useState<string | null>(null);
     const [divisionid, setDivisionid] = useState<string | null>(null);
     const [description, setDescription] = useState<string | null>(null);
+    // function to send data to the api to create a candidate
     const onCandidateCreate = async () => {
         await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/createcandidate', {
             method: 'POST',
@@ -20,6 +23,7 @@ const Createcandidate = () => {
             }),
         });
     };
+    // make it run on refresh
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -31,6 +35,7 @@ const Createcandidate = () => {
         }
     }, []);
     return (
+        // if user is not null return this
         user
             ? (
                 <>
@@ -44,6 +49,7 @@ const Createcandidate = () => {
                             </nav>
                         </div>
                         <div id="login3">
+                            {/* setting state variables in html to use them back in js in the post to create the user based on the values in the input boxes */}
                             <input type="text" placeholder="Enter Name" onChange={(e) => setUsername(e.target.value)} />
                         </div>
                         <div id="login1">
@@ -58,7 +64,7 @@ const Createcandidate = () => {
                     </div>
                 </>
             )
-            : (
+            : /* if the user is null return this */(
                 <>
                     <div className="card-overlay">
                         <p> You are not signed in</p>
