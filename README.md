@@ -27,13 +27,15 @@ Then install npm and node js at
 <!-- -->
 
 In both project directorys run:
-> npm install
-
+```
+npm install
+```
 <!-- -->
 
 Then you can run both projects in each terminals with:
-> npm run dev
-
+```
+npm run dev
+```
 <!-- -->
 
 Then you can visit the website at:
