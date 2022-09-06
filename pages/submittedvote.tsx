@@ -1,3 +1,4 @@
+// import things
 import React from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
@@ -8,7 +9,7 @@ const SubmittedVote = () => {
     return (
         <>
             {
-                session
+                session // if session is not null return this
                     ? (
                         <>
                             <div className="card-overlay">
@@ -26,7 +27,7 @@ const SubmittedVote = () => {
                             </div>
                         </>
                     )
-                    : (
+                    : ( // if session is null return this
                         <>
                             <div className="card-overlay">
                                 <p>You are not signed in</p>
@@ -39,7 +40,7 @@ const SubmittedVote = () => {
         </>
     );
 };
-
+// get sesssion from serverside props
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const session = await getSession(ctx);
     return ({ props: { session } });

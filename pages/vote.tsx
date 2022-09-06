@@ -1,13 +1,16 @@
+// import things
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 
 const Vote = () => {
+    // set states so I can use them in html
     const { data: session } = useSession();
     const [selection, setSelection] = useState<number | null>(null);
     const [names, setNames] = useState<string[]>([]);
     const [existvote, setExistVote] = useState();
+    // function to fetch data from the api
     const fetchData = useCallback(async () => {
         if (session) {
             const { data }: { data: any[] } = await fetch(`https://backendstudentcouncil.herokuapp.com/api/get-candidate/${encodeURIComponent(session?.user?.email)}`)
@@ -17,7 +20,7 @@ const Vote = () => {
             setExistVote(data[0]);
         }
     }, [session]);
-
+    // function to send vote to api
     const onSenddata = async () => {
         if (session) {
             if (selection != null) {
@@ -34,7 +37,7 @@ const Vote = () => {
             }
         }
     };
-
+    // make the fetchdata function run on refresh
     useEffect(() => {
         fetchData();
     }, [fetchData]);
@@ -42,6 +45,7 @@ const Vote = () => {
     return (
         <>
             {
+                // if session is not null do this
                 session
                     ? (
                         <>
@@ -62,9 +66,9 @@ const Vote = () => {
                                     <form id="formforvote">
                                         <div id="hi4">
                                             <select
-                                                value={selection !== null ? names[selection] : 'Select Candidate'}
+                                                value={selection !== null ? names[selection] : 'Select Candidate'} // if selection is not null then make the value Select Candidate
                                                 onChange={(e) => {
-                                                    const index = names.indexOf(e.target.value);
+                                                    const index = names.indexOf(e.target.value); // make it so you cannot pass in the value null
                                                     if (index >= 0) {
                                                         setSelection(index);
                                                     } else {
@@ -74,14 +78,14 @@ const Vote = () => {
                                                 id="Selectvotedropdown"
                                             >
                                                 <option value="defaultoption"> Choose an option </option>
-                                                {names.map((name) => (
+                                                {names.map((name) => ( // map the options in the select bar from the state of name
                                                     <option id={name} value={name}>
                                                         {name}
                                                     </option>
                                                 ))}
                                             </select>
                                         </div>
-                                        {selection !== null && existvote === null && (
+                                        {selection !== null && existvote === null && ( // only show this button when something is selected and you have not voted before
                                             <div id="hi2">
                                                 <Link href="/submittedvote">
                                                     <button type="submit" onClick={onSenddata}>
@@ -93,7 +97,7 @@ const Vote = () => {
                                                 </Link>
                                             </div>
                                         )}
-                                        {selection !== null && existvote !== null && (
+                                        {selection !== null && existvote !== null && ( // only show this button when something is selected but you have voted before
                                             <>
                                                 <div id="hi2">
                                                     <Link href="/submittedvote">
@@ -120,6 +124,7 @@ const Vote = () => {
                             </div>
                         </>
                     )
+                    // if session is null do this
                     : (
                         <>
                             <div className="card-overlay">
@@ -145,6 +150,7 @@ const Vote = () => {
     );
 };
 
+// get session from serverside props
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const session = await getSession(ctx);
     return ({ props: { session } });
