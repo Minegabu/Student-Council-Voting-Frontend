@@ -40,3 +40,14 @@ Then you can visit the website at:
 - http://localhost:3000
 
 <!-- -->
+
+## Logging into admin
+Username:
+> Noah
+
+<!-- -->
+
+Password:
+> Marwan
+
+<!-- -->
