@@ -43,7 +43,6 @@ const AdminHomepage = () => {
                         </div>
                         <div id="button">
                             <Link href="/adminlogin"><button type="button" onClick={onLogout}>Sign Out</button></Link>
-                            {' '}
                             {/* Link is a tag that redirects people, like <a> but better */}
                         </div>
                     </div>

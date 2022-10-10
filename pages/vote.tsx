@@ -24,14 +24,14 @@ const Vote = () => {
     const onSenddata = async () => {
         if (session) {
             if (selection != null) {
-                await fetch('https://backendstudentcouncil.herokuapp.com/api/vote/update', {
+                await fetch('https://backendstudentcouncil.herokuapp.com/api/vote/update/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         vote: names[selection],
-                        name: session.user?.name,
+                        name: session.user?.email,
                     }),
                 });
             }
@@ -99,13 +99,13 @@ const Vote = () => {
                                         )}
                                         {selection !== null && existvote !== null && ( // only show this button when something is selected but you have voted before
                                             <>
-                                                <div id="hi2">
-                                                    <Link href="/submittedvote">
-                                                        <button type="submit" onClick={onSenddata}>
+                                                <Link href="/submittedvote">
+                                                    <div id="hi2">
+                                                        <button type="button" onClick={onSenddata}>
                                                             Update Vote
                                                         </button>
-                                                    </Link>
-                                                </div>
+                                                    </div>
+                                                </Link>
                                             </>
                                         )}
                                     </form>

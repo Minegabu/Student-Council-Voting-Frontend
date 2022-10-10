@@ -358,3 +358,23 @@ img:hover {
     margin-left: 4vh;
     margin-right: 4vh;
 }
+
+td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+tr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

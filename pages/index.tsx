@@ -1,4 +1,4 @@
-// Import things
+// import things
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 import React, { useEffect, useCallback } from 'react';
 import { GetServerSidePropsContext } from 'next';

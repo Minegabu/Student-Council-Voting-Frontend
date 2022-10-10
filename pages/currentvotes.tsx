@@ -8,10 +8,10 @@ const CurrentVotes = () => {
     const [user, setUser] = useState<JwtPayload | null>(null); // typing things
     // function to fetch data from the api
     const getcurrentvotes = async () => {
+        // https://backendstudentcouncil.herokuapp.com/api/admin/get-vote
         const data = await fetch('https://backendstudentcouncil.herokuapp.com/api/admin/get-vote')
             .then((response) => response.json());
-        const votes2 = data;
-        setVotes(votes2.map((vote: { candidate_vote: string }) => vote.candidate_vote));
+        setVotes(data.data);
     };
     // make it so this runs on refresh, and checks if there is a jwt token in local storage meaning there is a user
     useEffect(() => {
@@ -36,11 +36,18 @@ const CurrentVotes = () => {
                             <a href="/createcandidate">Create Candidates</a>
                             <a href="/currentvotes" id="selectednav">Current Votes</a>
                         </nav>
-                        {votes.map((vote) => (
-                            <h1>
-                                {vote}
-                            </h1>
-                        ))}
+                        <table>
+                            {
+                                Object.entries(votes)
+                                    .map(([key, value]) => (
+                                        <tr>
+                                            <td>{key}</td>
+                                            {' '}
+                                            <td>{value}</td>
+                                        </tr>
+                                    ))
+                            }
+                        </table>
                     </div>
                 </>
             )
